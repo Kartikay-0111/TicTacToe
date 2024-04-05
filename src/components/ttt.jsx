@@ -3,6 +3,7 @@ import "w3-css/w3.css";
 import circle from "../assets/circle.png"
 import cross from "../assets/cross.png"
 import "./ttt.css"
+import './tailwind.css';
 let data = ["", "", "", "", "", "", "", "", ""]
 
 export const TicTacToe = () => {
@@ -38,7 +39,7 @@ export const TicTacToe = () => {
             checkwin();
         }
     }
-    
+
     const reset = () => {
         data = ["", "", "", "", "", "", "", "", ""]
         setLock(false)
@@ -80,38 +81,38 @@ export const TicTacToe = () => {
             setLock(true)
             setWinner(data[2])
         }
-        else if ( count === 9 && winner === null ) {
+        else if (count === 9 && winner === null) {
             setDraw(true)
         }
     }
 
     return (
         <div>
-                <div style={{ width: "50%", margin: "0 auto" }} className='title w3-text-black w3-center'><b>Tic Tac Toe</b></div>
-            <div className="box w3-center">
-                {winner && <div className='win w3-text-blue '>Congratulations {winner} won the game</div>}
-                {draw && <div className='draw w3-text-blue '>Match draw! Play again</div>}
-                <div className="bigbox">
-                    <div className='w3-row'>
-                        <div ref={box1} onClick={(e) => { handleclick(e, 0) }} style={{ height: "10vw", width: "10vw" }} className='boxes w3-card w3-third'></div>
-                        <div ref={box2} onClick={(e) => { handleclick(e, 1) }} style={{ height: "10vw", width: "10vw" }} className='boxes w3-card w3-third'></div>
-                        <div ref={box3} onClick={(e) => { handleclick(e, 2) }} style={{ height: "10vw", width: "10vw" }} className='boxes w3-card w3-third'></div>
+            <div style={{ width: "100%", margin: "0 auto" }} className='flex justify-center font-bold md:text-5xl text-3xl'>
+                <b className=' text-teal-500 md:m-2 mb-5'>** Tic Tac Toe **</b></div>
+            {winner && <div className='w3-center text-xl md:text-3xl font-semibold text-blue-600 '>Congratulations {winner} won the game</div>}
+            {draw && <div className='text-blue-600 text-xl md:text-3xl w3-center m-4'>Match draw! Play again</div>}
+            <div className="box flex justify-center align-middle m-auto">
+                <div className="grid grid-rows-3 gap-2 grid-flow-col">
+                    <div className=' grid grid-cols-3 gap-2'>
+                        <div ref={box1} onClick={(e) => { handleclick(e, 0) }} className='boxes w3-card'></div>
+                        <div ref={box2} onClick={(e) => { handleclick(e, 1) }} className='boxes w3-card'></div>
+                        <div ref={box3} onClick={(e) => { handleclick(e, 2) }} className='boxes w3-card'></div>
                     </div>
-                    <div className='w3-row'>
-                        <div ref={box4} onClick={(e) => { handleclick(e, 3) }} style={{ height: "10vw", width: "10vw" }} className='boxes w3-card w3-third'></div>
-                        <div ref={box5} onClick={(e) => { handleclick(e, 4) }} style={{ height: "10vw", width: "10vw" }} className='boxes w3-card w3-third'></div>
-                        <div ref={box6} onClick={(e) => { handleclick(e, 5) }} style={{ height: "10vw", width: "10vw" }} className='boxes w3-card w3-third'></div>
+                    <div className=' grid grid-cols-3 gap-2'>
+                        <div ref={box4} onClick={(e) => { handleclick(e, 3) }} className='boxes w3-card'></div>
+                        <div ref={box5} onClick={(e) => { handleclick(e, 4) }} className='boxes w3-card'></div>
+                        <div ref={box6} onClick={(e) => { handleclick(e, 5) }} className='boxes w3-card'></div>
                     </div>
-                    <div className='w3-row'>
-                        <div ref={box7} onClick={(e) => { handleclick(e, 6) }} style={{ height: "10vw", width: "10vw" }} className='boxes w3-card w3-third'></div>
-                        <div ref={box8} onClick={(e) => { handleclick(e, 7) }} style={{ height: "10vw", width: "10vw" }} className='boxes w3-card w3-third'></div>
-                        <div ref={box9} onClick={(e) => { handleclick(e, 8) }} style={{ height: "10vw", width: "10vw" }} className='boxes w3-card w3-third'></div>
+                    <div className=' grid grid-cols-3 gap-2'>
+                        <div ref={box7} onClick={(e) => { handleclick(e, 6) }} className='boxes w3-card'></div>
+                        <div ref={box8} onClick={(e) => { handleclick(e, 7) }} className='boxes w3-card'></div>
+                        <div ref={box9} onClick={(e) => { handleclick(e, 8) }} className='boxes w3-card'></div>
                     </div>
                 </div>
-                <div><button onClick={reset} className='w3-margin-top w3-btn w3-black w3-round w3-large w3-hover-blue' type='button'>Reset</button></div>
-                {(winner || draw) && <div><button onClick={reset} className='w3-margin-top w3-btn w3-black w3-round w3-large w3-hover-blue' type='button'>Play Again</button></div>}
-
             </div>
+            <div className='flex justify-center'><button onClick={reset} className='mt-5 mb-2 bg-blue-500 hover:bg-blue-800 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded' type='button'>Reset</button></div>
+            {(winner || draw) && <div className='flex justify-center'><button onClick={reset} className='mb-2 bg-blue-500 hover:bg-blue-800 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded' type='button'>Play Again</button></div>}
         </div>
     )
 }
